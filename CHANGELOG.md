@@ -2,6 +2,12 @@
 
 All notable changes to ClassTimer+ are recorded here. Versions follow the releases of the single-file app.
 
+## [1.9.1] — 2026-11-01
+
+Owner review round 7 follow-up (Project Owner screenshot of a running timer in a narrow window):
+
+- **Digit-to-ring clearance:** at narrow window widths the digits spanned ~81% of the ring and crowded its stroke (the +2 px tracking from 1.9.0 made it worse). Digits are now sized at 26cqw (overtime 21.5cqw) with 1 px tracking, so the time spans about two-thirds of the ring with clear air on both sides at every window shape — verified in a 540 px-wide window in both the countdown and "+00:10" overtime states.
+
 ## [1.9.0] — 2026-11-01
 
 Owner review round 7 (Project Owner feedback on the live app, with screenshots):
