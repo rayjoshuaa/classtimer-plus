@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClassTimer+ — The calm classroom countdown timer</title>
+<title>Teacher Tools: ClassTimer+</title>
 <meta name="description" content="A free, big-screen classroom countdown timer with traffic-light stages, a gentle chime and overtime counting. No sign-up, works offline.">
 <meta name="theme-color" content="#5c2438">
-<meta property="og:title" content="ClassTimer+ — The calm classroom countdown timer">
+<meta property="og:title" content="Teacher Tools: ClassTimer+">
 <meta property="og:description" content="Traffic-light stages, a gentle chime, and overtime counting. Free for teachers — no sign-up.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='54' r='38' fill='none' stroke='%235c2438' stroke-width='8'/><path d='M50 34v22l14 10' fill='none' stroke='%23c39a3f' stroke-width='8' stroke-linecap='round'/><rect x='40' y='6' width='20' height='9' rx='4' fill='%235c2438'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,20 +50,43 @@
   }
   header h1 .plus{color:var(--gold-text)}
   header p{color:var(--muted);font-size:13.5px;margin:4px auto 0;line-height:1.45;max-width:560px}
-  main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;max-width:920px}
+  main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;max-width:1200px}
   .card{
     background:linear-gradient(155deg, rgba(255,255,255,.78), rgba(255,255,255,.52));
     -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
     border:1px solid rgba(255,255,255,.75);border-radius:var(--r-lg);
     box-shadow:0 24px 60px -24px rgba(92,36,56,.35), inset 0 1px 0 rgba(255,255,255,.85);
     padding:clamp(18px,3vw,28px);
-    display:flex;flex-direction:column;align-items:center;width:100%;max-width:700px;margin-top:12px;
+    display:flex;flex-direction:column;align-items:center;width:84vw;max-width:980px;margin-top:12px;
   }
   @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
     .card{background:rgba(255,255,255,.94)}
     .chip,.btn,.stage-pill,.options label{background:rgba(255,255,255,.92)}
+    .info-panel{background:rgba(255,255,255,.96)}
   }
-  .ring-wrap{position:relative;width:min(44vh,86vw,440px);aspect-ratio:1;filter:drop-shadow(0 12px 20px rgba(92,36,56,.10))}
+  .pre-ring{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px}
+  .info-btn{
+    width:30px;height:30px;border-radius:50%;flex:none;display:inline-flex;align-items:center;justify-content:center;
+    border:1px solid rgba(92,36,56,.16);background:rgba(255,255,255,.62);color:var(--wine);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    box-shadow:0 2px 0 rgba(214,196,168,.8), 0 8px 14px -10px rgba(92,36,56,.4);transition:all .16s ease;
+  }
+  .info-btn svg{width:17px;height:17px}
+  .info-btn:hover{border-color:var(--wine)}
+  .info-btn:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(214,196,168,.8)}
+  .info-panel{
+    position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);z-index:6;
+    width:min(430px,88vw);text-align:left;padding:16px 18px;border-radius:18px;
+    background:linear-gradient(155deg, rgba(255,255,255,.92), rgba(255,255,255,.84));
+    -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+    border:1px solid rgba(92,36,56,.14);
+    box-shadow:0 24px 48px -20px rgba(92,36,56,.45), inset 0 1px 0 rgba(255,255,255,.85);
+  }
+  .info-panel h2{font-family:"Outfit",sans-serif;font-size:15px;font-weight:700;color:var(--wine)}
+  .info-panel ol{margin:8px 0 0 18px;font-size:13.5px;line-height:1.55;color:var(--ink)}
+  .info-panel li{margin:4px 0}
+  .info-panel .info-keys{margin-top:10px;font-size:12.5px;color:var(--muted);line-height:1.55}
+  .ring-wrap{position:relative;width:min(44vh,86vw,440px);aspect-ratio:1;container-type:inline-size;filter:drop-shadow(0 12px 20px rgba(92,36,56,.10))}
   svg.ring{width:100%;height:100%;transform:rotate(-90deg)}
   .ring-bg{fill:none;stroke:rgba(92,36,56,.10);stroke-width:11}
   .ring-fg{fill:none;stroke:var(--green);stroke-width:11;stroke-linecap:round;transition:stroke .6s ease}
@@ -82,12 +105,12 @@
   body.stage-amber .stage-pill{color:#a86e14} body.stage-amber .stage-pill .dot{background:var(--amber)}
   body.stage-red .stage-pill{color:#b23a32} body.stage-red .stage-pill .dot{background:var(--red)}
   #timeDisplay{
-    font-family:"Outfit",sans-serif;font-size:clamp(64px,12vw,140px);font-weight:700;
+    font-family:"Outfit",sans-serif;font-size:clamp(58px,11vw,124px);font-size:30cqw;font-weight:700;
     line-height:1.05;font-variant-numeric:tabular-nums;letter-spacing:-1px;color:var(--ink);
   }
-  #timeDisplay.overtime{color:#b23a32}
-  .status-line{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:14px;text-align:center}
-  #subLabel{font-size:clamp(13.5px,1.9vw,16px);color:var(--muted)}
+  #timeDisplay.overtime{color:#b23a32;font-size:25cqw}
+  .feedback{font-size:14px;color:var(--muted);text-align:center;margin-top:12px}
+  .feedback:empty{display:none}
   @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
   body.finished .ring-wrap{animation:pulse 1.1s ease-in-out infinite}
   .presets{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:16px}
@@ -145,27 +168,28 @@
   }
   .options input:checked{background:var(--wine)}
   .options input:checked::after{transform:translateX(16px)}
-  footer{margin-top:10px;text-align:center;font-size:12.5px;color:var(--muted);line-height:1.55}
-  footer a{color:var(--wine);font-weight:600;text-decoration:none}
-  footer a:hover{text-decoration:underline}
-  .keys{font-size:11.5px;color:#6f6154}
+  footer{margin-top:12px;text-align:center;color:var(--muted)}
+  .keys{display:flex;gap:8px 18px;justify-content:center;flex-wrap:wrap;font-size:12px}
+  .keys span{display:inline-flex;align-items:center;gap:6px}
+  kbd{
+    font-family:"Inter",sans-serif;font-size:11px;font-weight:700;color:var(--wine);
+    background:rgba(255,255,255,.65);border:1px solid rgba(92,36,56,.18);border-bottom-width:2px;
+    border-radius:6px;padding:2px 7px;
+  }
+  .foot-meta{margin-top:7px;font-size:12px}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
   @media (max-height:900px){
     header p{display:none}
     .card{padding:18px}
     .ring-wrap{width:min(35vh,86vw,380px)}
-    #timeDisplay{font-size:clamp(58px,11vw,124px)}
-    .status-line{margin-top:10px}
     .presets{margin-top:10px}
     .custom{margin-top:6px}
     .controls{margin-top:10px}
     .options{margin-top:10px}
-    .keys{display:none}
   }
   @media (max-height:740px){
     .card{padding:18px}
     .ring-wrap{width:min(34vh,86vw,350px)}
-    #timeDisplay{font-size:clamp(52px,10.5vw,108px)}
   }
   @media (max-height:600px){
     body{height:auto;min-height:100dvh;overflow:visible}
@@ -177,13 +201,29 @@
 </head>
 <body class="stage-green">
 <header>
-  <div class="eyebrow">Ray Joshua · Teacher Tools</div>
+  <div class="eyebrow">Teacher Tools</div>
   <h1>ClassTimer<span class="plus">+</span></h1>
   <p>The calm countdown timer for your classroom screen — time the whole class can see, without the alarm-clock stress.</p>
 </header>
 
 <main>
   <div class="card">
+    <div class="pre-ring">
+      <span class="stage-pill"><span class="dot"></span><span id="stageLabel">Ready</span></span>
+      <button class="info-btn" id="infoBtn" aria-label="How to use ClassTimer+" aria-expanded="false" aria-controls="infoPanel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.4"/><circle cx="12" cy="7.6" r="0.6" fill="currentColor" stroke="none"/></svg>
+      </button>
+      <div class="info-panel" id="infoPanel" role="dialog" aria-label="How to use ClassTimer+" hidden>
+        <h2>How to use</h2>
+        <ol>
+          <li>Pick a preset, or type a custom time and press <strong>Set</strong>.</li>
+          <li>Press <strong>Start</strong>. The ring changes colour as time runs down — green, then amber, then red.</li>
+          <li>Use <strong>− 1 min</strong> / <strong>+ 1 min</strong> to adjust, even while the timer is running.</li>
+          <li>At zero the chime sounds. If overtime is on, the timer keeps counting up so you can wrap up calmly.</li>
+        </ol>
+        <p class="info-keys">Shortcuts: <strong>Space</strong> start / pause · <strong>−</strong> / <strong>+</strong> one minute · <strong>R</strong> reset · <strong>F</strong> fullscreen</p>
+      </div>
+    </div>
     <div class="ring-wrap">
       <svg class="ring" viewBox="0 0 200 200" aria-hidden="true">
         <circle class="ring-bg" cx="100" cy="100" r="88"></circle>
@@ -192,10 +232,6 @@
       <div class="time-box">
         <div id="timeDisplay">05:00</div>
       </div>
-    </div>
-    <div class="status-line">
-      <span class="stage-pill"><span class="dot"></span><span id="stageLabel">Ready</span></span>
-      <span id="subLabel">Pick a time, then press Start</span>
     </div>
     <div class="sr-only" aria-live="polite" id="srStatus"></div>
 
@@ -239,6 +275,7 @@
         <span>Fullscreen</span>
       </button>
     </div>
+    <div id="subLabel" class="feedback"></div>
   </div>
 </main>
 
@@ -248,8 +285,13 @@
 </div>
 
 <footer>
-  Made for teachers by <a href="https://rayjoshuaa-portfolio.pages.dev" target="_blank" rel="noopener">Ray Joshua</a> · Free forever · No sign-up · Works offline
-  <div class="keys">Keyboard: Space — start / pause · − / + — take / add a minute · R — reset · F — fullscreen</div>
+  <div class="keys">
+    <span><kbd>Space</kbd> Start / pause</span>
+    <span><kbd>−</kbd> <kbd>+</kbd> One minute</span>
+    <span><kbd>R</kbd> Reset</span>
+    <span><kbd>F</kbd> Fullscreen</span>
+  </div>
+  <div class="foot-meta">Free forever · No sign-up · Works offline</div>
 </footer>
 
 <script>
@@ -306,12 +348,12 @@
       display.textContent = fmt(remaining);
       display.classList.remove('overtime');
       stageLabel.textContent = running ? (st==='green' ? 'On track' : st==='amber' ? 'Halfway there' : 'Almost done') : (remaining===total ? 'Ready' : 'Paused');
-      subLabel.textContent = running ? 'Stay focused — you are doing great' : (remaining===total ? 'Pick a time, then press Start' : 'Press Start to continue');
+      subLabel.textContent = running ? '' : (remaining===total ? '' : 'Paused — press Start to continue');
     }
     startBtn.innerHTML = running ? ICON_PAUSE : (remaining<total && !finished ? ICON_RESUME : ICON_PLAY);
     var lbl = stageLabel.textContent;
     if(lbl !== lastLabel){ lastLabel = lbl; srStatus.textContent = lbl + (finished ? '' : ', ' + display.textContent); }
-    document.title = (finished ? '+' : '') + display.textContent + ' · ClassTimer+';
+    document.title = (finished ? '+' : '') + display.textContent + ' · Teacher Tools: ClassTimer+';
   }
   function warmAudio(){
     try{
@@ -417,6 +459,21 @@
     else if(e.key === '+' || e.key === '='){ document.getElementById('addBtn').click(); }
     else if(e.key === 'r' || e.key === 'R'){ setTotal(total, true); }
     else if(e.key === 'f' || e.key === 'F'){ document.getElementById('fullBtn').click(); }
+  });
+  var infoBtn = document.getElementById('infoBtn');
+  var infoPanel = document.getElementById('infoPanel');
+  function closeInfo(){ infoPanel.hidden = true; infoBtn.setAttribute('aria-expanded', 'false'); }
+  infoBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var willOpen = infoPanel.hidden;
+    infoPanel.hidden = !willOpen;
+    infoBtn.setAttribute('aria-expanded', String(willOpen));
+  });
+  document.addEventListener('click', function(e){
+    if(!infoPanel.hidden && !infoPanel.contains(e.target)){ closeInfo(); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeInfo(); }
   });
   if(!document.documentElement.requestFullscreen){
     document.getElementById('fullBtn').style.display = 'none';
