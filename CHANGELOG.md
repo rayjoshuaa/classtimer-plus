@@ -2,6 +2,17 @@
 
 All notable changes to ClassTimer+ are recorded here. Versions follow the releases of the single-file app.
 
+## [1.9.0] — 2026-11-01
+
+Owner review round 7 (Project Owner feedback on the live app, with screenshots):
+
+- **Copyright to the very corner:** the footer now spans the full page width, so the "© 2026 Ray Joshua. All rights reserved." line sits at the page's bottom-right corner (it previously stopped at the edge of the centred footer row).
+- **Digit spacing:** the timer digits were cramped (−1 px tracking); they now have +2 px letter-spacing and breathe, in both the countdown and overtime sizes.
+- **Custom fields reset:** after pressing **Set**, the minutes/seconds fields clear back to their "min" / "sec" placeholders, ready for the next entry.
+- **Double-plus tab title fixed:** in overtime the tab showed "ClassTimer+ | ++00:11" — the title and the display were both adding a plus. The title now uses the display text as-is: exactly one plus.
+- **Overtime OFF means stop at 00:00:** with "Count overtime after zero" off, a finished timer now rests at a plain **00:00** — no plus sign, no overtime wording (previously it still rendered "+00:00"). Relatedly, pressing Start on a finished timer now cleanly restarts the full set time instead of instantly re-finishing.
+- **New overtime wording:** "Overtime — wrap up and share" is now "Overtime — wrap up and finish up".
+
 ## [1.8.0] — 2026-11-01
 
 Owner review round 6 (Project Owner feedback on the live app, with screenshots):
