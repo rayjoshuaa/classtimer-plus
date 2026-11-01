@@ -30,7 +30,7 @@
       var(--paper);
     color:var(--ink);
     display:flex; flex-direction:column; align-items:center;
-    min-height:100vh; padding:28px 16px 30px;
+    height:100dvh; padding:16px 16px 14px; overflow:hidden;
     transition:background .8s ease;
   }
   body.stage-amber{background:
@@ -45,17 +45,17 @@
   .eyebrow{font-size:11.5px;font-weight:700;letter-spacing:3.2px;text-transform:uppercase;color:var(--gold-text)}
   header h1{
     font-family:"Outfit",sans-serif;font-weight:800;letter-spacing:-.5px;
-    font-size:clamp(30px,4.6vw,44px);color:var(--wine);margin-top:6px;line-height:1.05;
+    font-size:clamp(28px,4.2vw,40px);color:var(--wine);margin-top:6px;line-height:1.05;
   }
   header h1 .plus{color:var(--gold-text)}
-  header p{color:var(--muted);font-size:clamp(13.5px,1.8vw,16px);margin-top:8px;line-height:1.55}
+  header p{color:var(--muted);font-size:clamp(13.5px,1.8vw,16px);margin-top:5px;line-height:1.5}
   main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;max-width:920px}
   .card{
     background:var(--surface);border:1px solid var(--hairline);border-radius:var(--r-lg);
-    box-shadow:var(--shadow);padding:clamp(20px,4vw,40px);
-    display:flex;flex-direction:column;align-items:center;width:100%;max-width:680px;margin-top:26px;
+    box-shadow:var(--shadow);padding:clamp(16px,3vw,28px);
+    display:flex;flex-direction:column;align-items:center;width:100%;max-width:680px;margin-top:14px;
   }
-  .ring-wrap{position:relative;width:min(46vh,80vw,400px);aspect-ratio:1}
+  .ring-wrap{position:relative;width:min(35vh,78vw,350px);aspect-ratio:1;filter:drop-shadow(0 12px 20px rgba(92,36,56,.10))}
   svg.ring{width:100%;height:100%;transform:rotate(-90deg)}
   .ring-bg{fill:none;stroke:#f0e7da;stroke-width:11}
   .ring-fg{fill:none;stroke:var(--green);stroke-width:11;stroke-linecap:round;transition:stroke .6s ease}
@@ -79,45 +79,54 @@
   #subLabel{font-size:clamp(13px,1.9vw,15.5px);color:var(--muted);min-height:1.35em;margin-top:4px}
   @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
   body.finished .ring-wrap{animation:pulse 1.1s ease-in-out infinite}
-  .presets{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:26px}
+  .presets{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
   button{font:inherit;cursor:pointer}
   button:focus-visible{outline:3px solid rgba(195,154,63,.65);outline-offset:2px}
   .chip{
     border:1px solid var(--hairline);background:#fffdf9;color:var(--ink);
     border-radius:999px;padding:9px 17px;font-size:14.5px;font-weight:600;min-height:44px;
-    transition:all .16s ease;
+    transition:all .16s ease;box-shadow:0 2px 0 #eadfcd;
   }
+  .chip:active{transform:translateY(1px);box-shadow:0 1px 0 #eadfcd}
   .chip:hover{border-color:var(--wine);color:var(--wine)}
-  .chip.active{background:var(--wine);border-color:var(--wine);color:#fff;box-shadow:0 6px 16px -6px rgba(92,36,56,.5)}
-  .custom{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:14px;flex-wrap:wrap}
+  .chip.active{background:var(--wine);border-color:var(--wine);color:#fff;box-shadow:0 2px 0 var(--wine-deep), 0 6px 16px -6px rgba(92,36,56,.5)}
+  .custom{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:10px;flex-wrap:wrap}
   .custom span{font-size:13.5px;color:var(--muted);font-weight:600}
   .custom input{
     font:inherit;width:74px;padding:9px 10px;border-radius:var(--r-sm);border:1px solid var(--hairline);
-    text-align:center;background:#fff;color:var(--ink);min-height:44px;
+    text-align:center;background:#fff;color:var(--ink);min-height:44px;box-shadow:inset 0 2px 4px rgba(38,32,25,.05);
   }
   .custom input:focus{outline:none;border-color:var(--gold)}
-  .controls{display:flex;gap:10px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+  .controls{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
   .btn{
     display:inline-flex;align-items:center;gap:9px;border-radius:999px;min-height:50px;
     padding:12px 24px;font-size:16px;font-weight:600;border:1px solid var(--hairline);
     background:var(--surface);color:var(--ink);transition:all .16s ease;
+    box-shadow:0 2px 0 #e6d7c1, 0 14px 24px -16px rgba(92,36,56,.45);
   }
   .btn svg{width:19px;height:19px;flex:none}
   .btn:hover{border-color:var(--wine);color:var(--wine)}
-  .btn:active{transform:scale(.97)}
+  .btn:active{transform:translateY(2px);box-shadow:0 0 0 #e6d7c1, 0 6px 12px -8px rgba(92,36,56,.4)}
   .btn.primary{
     background:var(--wine);border-color:var(--wine);color:#fff;min-width:168px;justify-content:center;
-    box-shadow:0 10px 22px -8px rgba(92,36,56,.55);
+    box-shadow:0 3px 0 var(--wine-deep), 0 16px 26px -12px rgba(92,36,56,.6);
   }
+  .btn.primary:active{transform:translateY(2px);box-shadow:0 1px 0 var(--wine-deep), 0 8px 14px -8px rgba(92,36,56,.5)}
   .btn.primary:hover{background:var(--wine-deep);color:#fff}
-  .options{display:flex;gap:20px;justify-content:center;margin-top:20px;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
+  .options{display:flex;gap:20px;justify-content:center;margin-top:14px;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
   .options label{display:flex;gap:7px;align-items:center;cursor:pointer;font-weight:500}
   .options input{accent-color:var(--wine);width:17px;height:17px;cursor:pointer}
-  footer{margin-top:28px;text-align:center;font-size:13px;color:var(--muted);line-height:1.7}
+  footer{margin-top:14px;text-align:center;font-size:13px;color:var(--muted);line-height:1.55}
   footer a{color:var(--wine);font-weight:600;text-decoration:none}
   footer a:hover{text-decoration:underline}
   .keys{font-size:12px;color:#6f6154}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  @media (max-height:740px){
+    header p{display:none}
+  }
+  @media (max-height:600px){
+    body{height:auto;min-height:100dvh;overflow:visible}
+  }
   @media (prefers-reduced-motion: reduce){
     *{animation:none!important;transition:none!important}
   }
@@ -168,6 +177,10 @@
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
         <span>Start</span>
       </button>
+      <button class="btn" id="minusBtn" title="Take away one minute">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+        <span>1:00</span>
+      </button>
       <button class="btn" id="addBtn" title="Add one minute">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
         <span>1:00</span>
@@ -191,7 +204,7 @@
 
 <footer>
   Made for teachers by <a href="https://rayjoshuaa-portfolio.pages.dev" target="_blank" rel="noopener">Ray Joshua</a> · Free forever · No sign-up · Works offline
-  <div class="keys">Keyboard: Space — start / pause · R — reset · F — fullscreen</div>
+  <div class="keys">Keyboard: Space — start / pause · − / + — take / add a minute · R — reset · F — fullscreen</div>
 </footer>
 
 <script>
@@ -327,6 +340,13 @@
     if(running){ endAt += 60000; }
     render();
   });
+  document.getElementById('minusBtn').addEventListener('click', function(){
+    if(finished) return;
+    if(!running && remaining === total){ if(total > 60) setTotal(total - 60); return; }
+    remaining = Math.max(1, remaining - 60);
+    if(running){ endAt -= 60000; }
+    render();
+  });
   document.getElementById('fullBtn').addEventListener('click', function(){
     if(document.fullscreenElement){ document.exitFullscreen(); }
     else if(document.documentElement.requestFullscreen){ document.documentElement.requestFullscreen(); }
@@ -348,6 +368,8 @@
   document.addEventListener('keydown', function(e){
     if(e.target.tagName === 'INPUT') return;
     if(e.code === 'Space'){ e.preventDefault(); running ? pause() : start(); }
+    else if(e.key === '-' || e.key === '_'){ document.getElementById('minusBtn').click(); }
+    else if(e.key === '+' || e.key === '='){ document.getElementById('addBtn').click(); }
     else if(e.key === 'r' || e.key === 'R'){ setTotal(total, true); }
     else if(e.key === 'f' || e.key === 'F'){ document.getElementById('fullBtn').click(); }
   });

@@ -2,6 +2,15 @@
 
 All notable changes to ClassTimer+ are recorded here. Versions follow the releases of the single-file app.
 
+## [1.2.0] — 2026-11-01
+
+Owner review round (Project Owner feedback on the live site):
+
+- Added a **−1:00 button** beside +1:00 (before starting it shortens the set timer; while running or paused it takes a minute off the clock; keyboard `−` / `+` work too).
+- **Fit-to-screen layout:** the app now fills the viewport (`100dvh`) with no scrolling at normal laptop/projector heights — the ring sizes from viewport height and spacing is compressed; the tagline hides on short screens, and scrolling returns only below 600px height so nothing is ever clipped.
+- **Tactile controls** (the family style direction): buttons and chips gained a physical bottom edge and a press-down motion; inputs gained a soft inset; the ring sits on a soft shadow.
+- Docs: deployment record corrected — the site is deployed from this repository via Cloudflare Pages Git integration (automatic on push), so the earlier manual-upload exception is retired. README live link confirmed.
+
 ## [1.1.0] — 2026-11-01
 
 UAES adoption revision (UAES-001 v1.0, Level 1; UAES-UI-001):
