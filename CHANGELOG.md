@@ -2,6 +2,20 @@
 
 All notable changes to ClassTimer+ are recorded here. Versions follow the releases of the single-file app.
 
+## [1.4.0] — 2026-11-01
+
+Senior UX review pass (the Project Owner asked for a UI/UX audit of the live app — what was not appropriate, fixed):
+
+- **The timer is the hero now.** The header is slimmed to a compact wordmark and a one-line tagline (which steps aside on shorter screens), and the reclaimed space goes to the countdown: the ring grows to up to 440px and the digits to up to 140px — sized to be read from the back of a classroom.
+- **Status moved out of the ring for good.** The stage pill no longer sits inside the circle above the digits; it sits beside the status sentence below the ring, so the digits are dead-centre and nothing competes with them.
+- **Clearer controls.** Start/Pause is unmistakably the primary action (larger and wider than every other control); the ± buttons now read "1 min" with their icon instead of an ambiguous "1:00", flank the primary button, and every secondary action uses a quieter utility size.
+- **Settings are switches.** The two raw browser checkboxes are now proper glass pill toggle switches, moved out of the card into a slim settings strip beneath it — set-once preferences no longer compete with the timer controls.
+- **Glass edges made honest.** Chips, buttons and inputs gained a faint wine-tinted edge so they stay defined over the bright background glows (the old white-on-white glass border could vanish), and the card glass is slightly more opaque for text contrast.
+- **Stage glows agree with the stage.** The background glows now follow the stage colour — the teal glow no longer fights the red "almost done" stage.
+- **Focus visibility.** The keyboard focus outline changed from pale gold to wine, so it can actually be seen on the light background.
+- **Responsive ladder reworked** (breakpoints at 900px and 740px height) so header, card, settings and footer all stay on screen at common laptop and projector heights.
+- No behaviour changes: same element IDs, storage key, stage thresholds, chime and keyboard shortcuts.
+
 ## [1.3.0] — 2026-11-01
 
 Owner review round 2 — visual restyle (Project Owner: the flat render was not premium enough):

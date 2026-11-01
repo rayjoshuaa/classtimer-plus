@@ -15,7 +15,7 @@ A single-file classroom countdown timer for the projector screen: traffic-light 
 - Screen-reader announcements go to `#srStatus` only on state changes — never per second.
 - Design tokens (this app's own, per UAES-UI-001): wine `#5c2438`, wine-deep `#451a2a`, gold `#c39a3f` (graphics) / `#9a742a` (text), teal `#256f66`, paper `#faf7f2`, ink `#262019`, muted `#75634f`, hairline `#e9dfd2`. Fonts: Outfit (display) + Inter (UI) via Google Fonts. Text colours must keep WCAG 2.2 AA contrast on paper/white; touch targets ≥ 44px; visible focus rings; `prefers-reduced-motion` respected.
 - Family style direction: **glassmorphism in the family palette** (Project Owner direction, 2026-11-01) — frosted-glass surfaces (translucent white, backdrop blur, bright borders, deep soft shadows) over soft gold/teal/wine glows; controls stay chunky and pressable with a press-down motion. Calm and premium, never toy-like. Nothing may overlap the progress ring: the status line sits below it.
-- Fit-to-screen rule: the app must fill `100dvh` with **no scrolling** at normal laptop/projector heights (the ring sizes from viewport height; the tagline hides below 740px height; scrolling returns only below 600px so nothing is clipped). Keyboard: Space start/pause, `−`/`+` minute down/up, R reset, F fullscreen.
+- Fit-to-screen rule: the app must fill `100dvh` with **no scrolling** at normal laptop/projector heights (the ring sizes from viewport height; the tagline and keyboard hints step aside below 900px height; scrolling returns only below 600px so nothing is clipped). Keyboard: Space start/pause, `−`/`+` minute down/up, R reset, F fullscreen.
 
 ## Workflow
 
