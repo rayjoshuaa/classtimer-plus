@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClassTimer+ — The calm classroom countdown timer</title>
+<meta name="description" content="A free, big-screen classroom countdown timer with traffic-light stages, gentle chime and overtime counting. No sign-up, works offline.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏱️</text></svg>">
+<style>
+  :root{
+    --wine:#682d40; --wine-dark:#4e2130; --gold:#d4a94e; --teal:#2e7d74;
+    --paper:#faf6ef; --ink:#2b2320; --muted:#8a7a72;
+    --green:#3d9970; --amber:#e8a13a; --red:#d9534f;
+    --card:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--paper); color:var(--ink);
+    display:flex; flex-direction:column; align-items:center;
+    min-height:100vh; padding:20px 16px 28px;
+    transition:background .8s ease;
+  }
+  body.stage-green{background:#f2f7f1}
+  body.stage-amber{background:#fbf3e2}
+  body.stage-red{background:#faecea}
+  header{text-align:center;margin-bottom:6px}
+  header h1{font-size:clamp(20px,3vw,30px);color:var(--wine);letter-spacing:.5px}
+  header h1 span{color:var(--gold)}
+  header p{color:var(--muted);font-size:clamp(12px,1.6vw,15px);margin-top:2px}
+  main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;max-width:900px}
+  .ring-wrap{position:relative;width:min(62vh,88vw,520px);aspect-ratio:1}
+  svg.ring{width:100%;height:100%;transform:rotate(-90deg)}
+  .ring-bg{fill:none;stroke:#e7ddd2;stroke-width:14}
+  .ring-fg{fill:none;stroke:var(--green);stroke-width:14;stroke-linecap:round;transition:stroke .6s ease}
+  body.stage-amber .ring-fg{stroke:var(--amber)}
+  body.stage-red .ring-fg{stroke:var(--red)}
+  .time-box{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10%}
+  #stageLabel{font-size:clamp(13px,2.2vw,19px);font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted)}
+  body.stage-green #stageLabel{color:var(--green)}
+  body.stage-amber #stageLabel{color:var(--amber)}
+  body.stage-red #stageLabel{color:var(--red)}
+  #timeDisplay{font-size:clamp(64px,15vw,150px);font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums;color:var(--ink)}
+  #timeDisplay.overtime{color:var(--red)}
+  #subLabel{font-size:clamp(13px,2vw,17px);color:var(--muted);min-height:1.3em}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+  body.finished .ring-wrap{animation:pulse 1s ease-in-out infinite}
+  .presets{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px 0 6px;max-width:760px}
+  .presets button,.controls button,.custom button{
+    font:inherit;cursor:pointer;border-radius:999px;border:2px solid var(--wine);
+    background:var(--card);color:var(--wine);font-weight:600;
+    padding:9px 18px;font-size:15px;transition:all .15s ease;min-height:44px;
+  }
+  .presets button:hover,.controls button:hover,.custom button:hover{background:var(--wine);color:#fff}
+  .presets button.active{background:var(--wine);color:#fff}
+  .custom{display:flex;gap:8px;align-items:center;justify-content:center;margin:10px 0 4px;flex-wrap:wrap}
+  .custom label{font-size:14px;color:var(--muted);font-weight:600}
+  .custom input{
+    font:inherit;width:76px;padding:9px 10px;border-radius:12px;border:2px solid #ddd0c2;
+    text-align:center;background:#fff;color:var(--ink);
+  }
+  .custom input:focus{outline:none;border-color:var(--gold)}
+  .controls{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+  .controls button{padding:12px 26px;font-size:17px}
+  #startBtn{background:var(--wine);color:#fff;min-width:150px}
+  #startBtn:hover{background:var(--wine-dark)}
+  .options{display:flex;gap:18px;justify-content:center;margin-top:16px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+  .options label{display:flex;gap:6px;align-items:center;cursor:pointer}
+  .options input{accent-color:var(--wine);width:17px;height:17px;cursor:pointer}
+  footer{margin-top:22px;text-align:center;font-size:13px;color:var(--muted)}
+  footer a{color:var(--wine);font-weight:600;text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  .keys{margin-top:4px;font-size:12px;color:#b3a49b}
+  @media (max-width:520px){ .controls button{padding:11px 18px;font-size:15px} }
+</style>
+</head>
+<body class="stage-green">
+<header>
+  <h1>ClassTimer<span>+</span></h1>
+  <p>The calm countdown timer for your classroom screen</p>
+</header>
+
+<main>
+  <div class="ring-wrap" aria-live="polite">
+    <svg class="ring" viewBox="0 0 200 200">
+      <circle class="ring-bg" cx="100" cy="100" r="88"></circle>
+      <circle class="ring-fg" id="ringFg" cx="100" cy="100" r="88"></circle>
+    </svg>
+    <div class="time-box">
+      <div id="stageLabel">Ready</div>
+      <div id="timeDisplay">05:00</div>
+      <div id="subLabel">Pick a time, then press Start</div>
+    </div>
+  </div>
+
+  <div class="presets" id="presets" role="group" aria-label="Preset times">
+    <button data-min="1">1 min</button>
+    <button data-min="2">2 min</button>
+    <button data-min="3">3 min</button>
+    <button data-min="5" class="active">5 min</button>
+    <button data-min="10">10 min</button>
+    <button data-min="15">15 min</button>
+    <button data-min="20">20 min</button>
+    <button data-min="30">30 min</button>
+  </div>
+
+  <div class="custom">
+    <label for="customMin">Custom:</label>
+    <input type="number" id="customMin" min="0" max="999" placeholder="min">
+    <input type="number" id="customSec" min="0" max="59" placeholder="sec">
+    <button id="customSet">Set</button>
+  </div>
+
+  <div class="controls">
+    <button id="startBtn">▶ Start</button>
+    <button id="addBtn" title="Add one minute">+1:00</button>
+    <button id="resetBtn">↺ Reset</button>
+    <button id="fullBtn" title="Fullscreen">⛶ Fullscreen</button>
+  </div>
+
+  <div class="options">
+    <label><input type="checkbox" id="soundToggle" checked> Gentle chime at zero</label>
+    <label><input type="checkbox" id="overtimeToggle" checked> Count overtime after zero</label>
+  </div>
+</main>
+
+<footer>
+  Made for teachers by <a href="https://rayjoshuaa-portfolio.pages.dev" target="_blank" rel="noopener">Ray Joshua</a> · Free forever · No sign-up · Works offline
+  <div class="keys">Keyboard: Space = start / pause · R = reset · F = fullscreen</div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var CIRC = 2 * Math.PI * 88;
+  var ring = document.getElementById('ringFg');
+  var display = document.getElementById('timeDisplay');
+  var stageLabel = document.getElementById('stageLabel');
+  var subLabel = document.getElementById('subLabel');
+  var startBtn = document.getElementById('startBtn');
+  ring.style.strokeDasharray = CIRC;
+  ring.style.strokeDashoffset = 0;
+
+  var total = 300, remaining = 300, running = false, finished = false;
+  var endAt = 0, tickId = null, audioCtx = null;
+
+  try{
+    var saved = parseInt(localStorage.getItem('classtimer_total')||'', 10);
+    if(saved > 0 && saved <= 5999){ total = remaining = saved; }
+  }catch(e){}
+
+  function fmt(s){
+    s = Math.max(0, Math.round(s));
+    var m = Math.floor(s/60), ss = s % 60;
+    return (m<10?'0':'') + m + ':' + (ss<10?'0':'') + ss;
+  }
+  function stage(){
+    if(finished) return 'red';
+    var f = total > 0 ? remaining/total : 0;
+    if(f > 0.5) return 'green';
+    if(f > 0.2) return 'amber';
+    return 'red';
+  }
+  function render(){
+    var st = stage();
+    document.body.classList.remove('stage-green','stage-amber','stage-red');
+    document.body.classList.add('stage-' + st);
+    document.body.classList.toggle('finished', finished);
+    var frac = total > 0 ? Math.max(0, remaining/total) : 0;
+    ring.style.strokeDashoffset = CIRC * (1 - frac);
+    if(finished){
+      display.textContent = '+' + fmt(-remaining);
+      display.classList.add('overtime');
+      stageLabel.textContent = "Time's up!";
+      subLabel.textContent = 'Overtime — wrap up and share';
+    } else {
+      display.textContent = fmt(remaining);
+      display.classList.remove('overtime');
+      stageLabel.textContent = running ? (st==='green' ? 'On track' : st==='amber' ? 'Halfway there' : 'Almost done') : (remaining===total ? 'Ready' : 'Paused');
+      subLabel.textContent = running ? 'Stay focused — you are doing great' : (remaining===total ? 'Pick a time, then press Start' : 'Press Start to continue');
+    }
+    startBtn.textContent = running ? '⏸ Pause' : (remaining<total && !finished ? '▶ Resume' : '▶ Start');
+    document.title = (finished ? '+' : '') + display.textContent + ' · ClassTimer+';
+  }
+  function chime(){
+    if(!document.getElementById('soundToggle').checked) return;
+    try{
+      audioCtx = audioCtx || new (window.AudioContext||window.webkitAudioContext)();
+      var notes = [523.25, 659.25, 783.99];
+      notes.forEach(function(freq, i){
+        var o = audioCtx.createOscillator(), g = audioCtx.createGain();
+        o.type = 'sine'; o.frequency.value = freq;
+        var t = audioCtx.currentTime + i * 0.22;
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(0.25, t + 0.03);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 0.9);
+        o.connect(g); g.connect(audioCtx.destination);
+        o.start(t); o.stop(t + 1);
+      });
+    }catch(e){}
+  }
+  function tick(){
+    var now = Date.now();
+    remaining = (endAt - now) / 1000;
+    if(remaining <= 0 && !finished){
+      finished = true;
+      chime();
+      if(!document.getElementById('overtimeToggle').checked){
+        remaining = 0; pause(); render(); return;
+      }
+    }
+    render();
+  }
+  function start(){
+    if(running) return;
+    if(remaining <= 0 && !finished){ remaining = total; finished = false; }
+    if(finished){ finished = false; }
+    running = true;
+    endAt = Date.now() + remaining * 1000;
+    tickId = setInterval(tick, 100);
+    render();
+  }
+  function pause(){
+    running = false;
+    if(tickId){ clearInterval(tickId); tickId = null; }
+    render();
+  }
+  function setTotal(sec, keepActive){
+    sec = Math.max(1, Math.min(5999, Math.round(sec)));
+    pause(); finished = false;
+    total = remaining = sec;
+    try{ localStorage.setItem('classtimer_total', String(sec)); }catch(e){}
+    if(!keepActive){
+      document.querySelectorAll('#presets button').forEach(function(b){
+        b.classList.toggle('active', parseInt(b.dataset.min,10)*60 === sec);
+      });
+    }
+    render();
+  }
+  startBtn.addEventListener('click', function(){ running ? pause() : start(); });
+  document.getElementById('resetBtn').addEventListener('click', function(){ setTotal(total, true); });
+  document.getElementById('addBtn').addEventListener('click', function(){
+    if(finished){ finished = false; }
+    remaining += 60; if(remaining > total) total = remaining;
+    if(running){ endAt += 60000; }
+    render();
+  });
+  document.getElementById('fullBtn').addEventListener('click', function(){
+    if(document.fullscreenElement){ document.exitFullscreen(); }
+    else if(document.documentElement.requestFullscreen){ document.documentElement.requestFullscreen(); }
+  });
+  document.querySelectorAll('#presets button').forEach(function(b){
+    b.addEventListener('click', function(){ setTotal(parseInt(b.dataset.min,10)*60); });
+  });
+  document.getElementById('customSet').addEventListener('click', function(){
+    var m = parseInt(document.getElementById('customMin').value||'0',10);
+    var s = parseInt(document.getElementById('customSec').value||'0',10);
+    if(m*60 + s > 0) setTotal(m*60 + s);
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.target.tagName === 'INPUT') return;
+    if(e.code === 'Space'){ e.preventDefault(); running ? pause() : start(); }
+    else if(e.key === 'r' || e.key === 'R'){ setTotal(total, true); }
+    else if(e.key === 'f' || e.key === 'F'){ document.getElementById('fullBtn').click(); }
+  });
+  setTotal(total, true);
+})();
+</script>
+</body>
+</html>
