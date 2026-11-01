@@ -29,7 +29,7 @@
 
 | Standard/rule | Reason | Impact | Alternative/control | Approval |
 |---|---|---|---|---|
-| UAES-001 §5, §20 — project `CLAUDE.md` and `.claude/rules/` | The project's developer is Thatch (Muse), not Claude Code, per Project Owner direction | The agent-guidance file is named `AGENTS.md` instead of `CLAUDE.md` | `AGENTS.md` carries the same role and content; the standards repository itself is never modified | Project Owner, 2026-11-01 |
+| UAES-001 §5, §20 — project `CLAUDE.md` and `.claude/rules/` | The project's developer is Thatch (Muse), not Claude Code, per Project Owner direction | The agent-guidance file is `docs/AGENTS.md` instead of `CLAUDE.md`, kept in `docs/` so the repository root stays focused on the app | `docs/AGENTS.md` carries the same role and content; the standards repository itself is never modified | Project Owner, 2026-11-01 |
 
 *Retired: an earlier exception covered manual zip deployment (UAES-001 §16). The Project Owner connected Cloudflare Pages to this repository on 2026-11-01, so deployment is version-controlled and the exception is no longer needed.*
 

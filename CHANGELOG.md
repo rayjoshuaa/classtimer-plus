@@ -2,6 +2,13 @@
 
 All notable changes to ClassTimer+ are recorded here. Versions follow the releases of the single-file app.
 
+## [1.2.1] — 2026-11-01
+
+Documentation only (no app changes):
+
+- README rewritten — plainer, more informative and more professional, with a keyboard-shortcut table and an "Under the hood" section.
+- `AGENTS.md` moved into `docs/`, so the repository root shows the app and its public documents at first glance.
+
 ## [1.2.0] — 2026-11-01
 
 Owner review round (Project Owner feedback on the live site):
