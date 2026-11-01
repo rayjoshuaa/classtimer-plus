@@ -2,6 +2,19 @@
 
 All notable changes to ClassTimer+ are recorded here. Versions follow the releases of the single-file app.
 
+## [1.6.0] — 2026-11-01
+
+Owner review round 4 (Project Owner feedback on the live app, with screenshots):
+
+- **Footer credit:** the footer line now leads with "Created by Ray Joshua", linked to his portfolio, followed by "Free forever · No sign-up · Works offline". (The header eyebrow stays "Teacher Tools".)
+- **Description below the circle:** the status/feedback line ("Overtime — wrap up and share", paused and error messages) moved from the bottom of the card to directly under the ring, where the eye already is.
+- **Labelled sections, more air:** the card is organised into sections with small labels — **Time** (presets + custom), **Adjust** (− 1 min / + 1 min, now their own section), then the centred action row (Start/Pause + Reset) — with hairline dividers and looser spacing, replacing the single compact stack.
+- **Custom fields are type-only:** the browser's up/down spinner arrows are removed from the minutes/seconds fields (type the numbers; numeric keypad on touch devices), and the **Set** button is properly wide.
+- **Fullscreen is a corner icon:** the labelled Fullscreen button left the action row; it is now an icon-only button in the top-right corner of the card.
+- **Tab title while running:** when a timer is active the tab reads **ClassTimer+ | 05:00** (overtime: ClassTimer+ | +02:35); idle it returns to "Teacher Tools: ClassTimer+".
+- **Animated background:** the gold/teal/wine glows now drift very slowly (a 26-second ease, transform-only) for a bit of life without distraction; the stage tints still take over as time runs down, and `prefers-reduced-motion` turns the drift off.
+- Layout budget re-checked at 1366×768 and 1600×800 after the sections added height: tighter short-screen spacing keeps header, card, settings, shortcuts and footer on one screen.
+
 ## [1.5.0] — 2026-11-01
 
 Owner review round 3 (Project Owner feedback on the live app, with screenshots):
