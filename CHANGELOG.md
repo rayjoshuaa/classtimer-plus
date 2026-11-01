@@ -2,6 +2,17 @@
 
 All notable changes to ClassTimer+ are recorded here. Versions follow the releases of the single-file app.
 
+## [1.7.0] — 2026-11-01
+
+Owner review round 5 (Project Owner feedback on the live app, with screenshots):
+
+- **Bigger timer again:** the short-screen trims had been shrinking the ring version over version. The ring is now sized from the *leftover* viewport height (`clamp(190px, calc(100dvh - 540px), 440px)`, tighter budget under 740 px height) — it takes all the space the controls leave instead of a fixed fraction, so it is larger at every window size and the layout still fits.
+- **Play/Pause responsiveness fixed:** if the Start button still had keyboard focus, pressing Space fired both the global shortcut and the button's own click — toggling twice and looking dead. The Space shortcut now steps aside when a button has focus (the button's native click fires exactly once), and buttons use `touch-action: manipulation` to remove tap delay.
+- **Zero layout shift:** the feedback line under the ring now has a permanently reserved slot (fixed height) — messages appear and disappear without pushing the sections around — and the stage pill has a fixed width, so its label changes no longer nudge the info button. The finished pulse was softened.
+- **Footer rebuilt:** the "Free forever · No sign-up · Works offline" line is removed; the settings toggles and the keyboard shortcuts now share one footer row, with the "Created by Ray Joshua" credit beneath — visible without fullscreen at ~700 px-tall browser windows.
+- **More air in Time:** the gap between the preset row and the Custom row was increased.
+- Verified by screenshot at 1366×700, 1366×768 (idle and paused — section positions identical) and 1920×1080.
+
 ## [1.6.0] — 2026-11-01
 
 Owner review round 4 (Project Owner feedback on the live app, with screenshots):
