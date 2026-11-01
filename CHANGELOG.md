@@ -2,6 +2,14 @@
 
 All notable changes to ClassTimer+ are recorded here. Versions follow the releases of the single-file app.
 
+## [1.3.0] — 2026-11-01
+
+Owner review round 2 — visual restyle (Project Owner: the flat render was not premium enough):
+
+- **Glassmorphism restyle in the same family palette** — frosted-glass card (translucent white gradient, 18px backdrop blur, bright glass border, deep soft shadow) over richer gold/teal/wine background glows; preset chips, buttons, stage pill and inputs are now glass too, with the wine gradient kept for the primary button and the active preset. Chunky press-down control behaviour retained. A no-`backdrop-filter` fallback keeps the app solid on older browsers.
+- **Fix:** the status line ("Pick a time, then press Start") sat inside the ring and collided with the ring's lower arc, wrapping and striking through. It now sits below the ring, and the time display is slightly smaller — nothing overlaps at any size.
+- Layout budget re-checked: fits `100dvh` without scrolling at normal heights with the footer visible.
+
 ## [1.2.1] — 2026-11-01
 
 Documentation only (no app changes):
