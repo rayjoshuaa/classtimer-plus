@@ -8,13 +8,13 @@ A single-file classroom countdown timer for the projector screen: traffic-light 
 
 ## Invariants — do not break
 
-- Element IDs used by the script: `ringFg`, `timeDisplay`, `stageLabel`, `subLabel`, `srStatus`, `startBtn`, `minusBtn`, `addBtn`, `resetBtn`, `fullBtn`, `presets`, `customMin`, `customSec`, `customSet`, `soundToggle`, `overtimeToggle`.
+- Element IDs used by the script: `ringFg`, `timeDisplay`, `stageLabel`, `subLabel`, `srStatus`, `startBtn`, `minusBtn`, `addBtn`, `resetBtn`, `fullBtn`, `presets`, `customMin`, `customSec`, `customSet`, `soundToggle`, `overtimeToggle`, `infoBtn`, `infoPanel`.
 - localStorage key: `classtimer_total` (last-used duration in seconds, clamped 1–5999).
 - Stage thresholds: green > 50% remaining, amber > 20%, red ≤ 20% or finished. Stage is always paired with a text label — never colour alone.
 - Chime: three sine notes (523.25 / 659.25 / 783.99 Hz). Audio must be created/resumed inside a user gesture (`warmAudio()` is called from Start).
 - Screen-reader announcements go to `#srStatus` only on state changes — never per second.
 - Design tokens (this app's own, per UAES-UI-001): wine `#5c2438`, wine-deep `#451a2a`, gold `#c39a3f` (graphics) / `#9a742a` (text), teal `#256f66`, paper `#faf7f2`, ink `#262019`, muted `#75634f`, hairline `#e9dfd2`. Fonts: Outfit (display) + Inter (UI) via Google Fonts. Text colours must keep WCAG 2.2 AA contrast on paper/white; touch targets ≥ 44px; visible focus rings; `prefers-reduced-motion` respected.
-- Family style direction: **glassmorphism in the family palette** (Project Owner direction, 2026-11-01) — frosted-glass surfaces (translucent white, backdrop blur, bright borders, deep soft shadows) over soft gold/teal/wine glows; controls stay chunky and pressable with a press-down motion. Calm and premium, never toy-like. Nothing may overlap the progress ring: the status line sits below it.
+- Family style direction: **glassmorphism in the family palette** (Project Owner direction, 2026-11-01) — frosted-glass surfaces (translucent white, backdrop blur, bright borders, deep soft shadows) over soft gold/teal/wine glows; controls stay chunky and pressable with a press-down motion. Calm and premium, never toy-like. Nothing may overlap the progress ring: the status pill sits above it, the digits are sized from the ring itself (container `cqw` units) so they can never cross the stroke at any window shape or zoom, how-to instructions live behind the ⓘ info button, and transient feedback appears below the controls. The interface carries no personal name: the eyebrow is "Teacher Tools", the tab title is "Teacher Tools: ClassTimer+" (the running countdown prefixes it), and the footer is the keyboard-shortcut reference.
 - Fit-to-screen rule: the app must fill `100dvh` with **no scrolling** at normal laptop/projector heights (the ring sizes from viewport height; the tagline and keyboard hints step aside below 900px height; scrolling returns only below 600px so nothing is clipped). Keyboard: Space start/pause, `−`/`+` minute down/up, R reset, F fullscreen.
 
 ## Workflow

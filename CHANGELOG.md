@@ -2,6 +2,18 @@
 
 All notable changes to ClassTimer+ are recorded here. Versions follow the releases of the single-file app.
 
+## [1.5.0] — 2026-11-01
+
+Owner review round 3 (Project Owner feedback on the live app, with screenshots):
+
+- **Fix — the time could overlap the ring.** The digits were sized from the viewport width while the ring is sized from the viewport height, so on wide, short screens (or at browser zoom) "05:00" grew wider than the circle and crossed its stroke. The digits are now sized from the ring itself (container units, `cqw`), so the time always fits inside the circle at any window shape or zoom; overtime counts use a slightly smaller size for the extra character.
+- **Tab label:** the browser tab now reads **Teacher Tools: ClassTimer+** (favicon unchanged); while the timer runs, the live countdown still prefixes it so the time can be read from the tab.
+- **Wider stage:** the card now spans about 80% of the window (capped at 980px) instead of a narrow 700px column.
+- **No personal name in the interface:** the header eyebrow is now simply "Teacher Tools", and the footer credit line is gone.
+- **Practical footer:** the footer is now the keyboard-shortcut reference (Space / − / + / R / F as key caps, always visible) plus a one-line "Free forever · No sign-up · Works offline".
+- **Status above the ring:** the stage pill (Ready / On track / …) sits above the circle again — outside it, so nothing competes with the digits.
+- **Instructions behind an info icon:** the standing instruction sentence under the timer is removed. A round ⓘ button beside the status pill opens a "How to use" panel with the steps and shortcuts (closes on outside click or Esc). The line under the controls is now only for transient feedback (paused state, overtime, and the custom-time error).
+
 ## [1.4.0] — 2026-11-01
 
 Senior UX review pass (the Project Owner asked for a UI/UX audit of the live app — what was not appropriate, fixed):
