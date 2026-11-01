@@ -48,6 +48,14 @@
       radial-gradient(1100px 520px at 85% -10%, rgba(207,79,69,.14), transparent 60%),
       radial-gradient(900px 500px at -10% 110%, rgba(92,36,56,.07), transparent 60%)}
   header,main,.options,footer{position:relative;z-index:1}
+  body::after{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.85;
+    background:radial-gradient(115% 90% at 50% 42%, transparent 55%, rgba(46,125,91,.15) 100%);
+    animation:vignettePulse 5s ease-in-out infinite alternate;
+  }
+  body.stage-amber::after{background:radial-gradient(115% 90% at 50% 42%, transparent 55%, rgba(207,132,31,.17) 100%)}
+  body.stage-red::after{background:radial-gradient(115% 90% at 50% 42%, transparent 55%, rgba(207,79,69,.19) 100%)}
+  @keyframes vignettePulse{from{opacity:.5}to{opacity:1}}
   header{text-align:center;max-width:720px}
   .eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold-text)}
   header h1{
@@ -71,17 +79,18 @@
     .info-panel{background:rgba(255,255,255,.96)}
   }
   .pre-ring{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px}
+  .info-wrap{position:absolute;top:14px;left:14px;z-index:6}
   .info-btn{
-    width:30px;height:30px;border-radius:50%;flex:none;display:inline-flex;align-items:center;justify-content:center;
+    width:42px;height:42px;border-radius:14px;flex:none;display:inline-flex;align-items:center;justify-content:center;
     border:1px solid rgba(92,36,56,.16);background:rgba(255,255,255,.62);color:var(--wine);
     -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
     box-shadow:0 2px 0 rgba(214,196,168,.8), 0 8px 14px -10px rgba(92,36,56,.4);transition:all .16s ease;
   }
-  .info-btn svg{width:17px;height:17px}
+  .info-btn svg{width:19px;height:19px}
   .info-btn:hover{border-color:var(--wine)}
   .info-btn:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(214,196,168,.8)}
   .info-panel{
-    position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);z-index:6;
+    position:absolute;top:calc(100% + 10px);left:0;z-index:6;
     width:min(430px,88vw);text-align:left;padding:16px 18px;border-radius:18px;
     background:linear-gradient(155deg, rgba(255,255,255,.92), rgba(255,255,255,.84));
     -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
@@ -92,7 +101,7 @@
   .info-panel ol{margin:8px 0 0 18px;font-size:13.5px;line-height:1.55;color:var(--ink)}
   .info-panel li{margin:4px 0}
   .info-panel .info-keys{margin-top:10px;font-size:12.5px;color:var(--muted);line-height:1.55}
-  .ring-wrap{position:relative;width:min(86vw, clamp(190px, calc(100dvh - 540px), 440px));aspect-ratio:1;container-type:inline-size;filter:drop-shadow(0 12px 20px rgba(92,36,56,.10))}
+  .ring-wrap{position:relative;width:min(86vw, clamp(190px, calc(100dvh - 548px), 440px));aspect-ratio:1;container-type:inline-size;filter:drop-shadow(0 12px 20px rgba(92,36,56,.10))}
   svg.ring{width:100%;height:100%;transform:rotate(-90deg)}
   .ring-bg{fill:none;stroke:rgba(92,36,56,.10);stroke-width:11}
   .ring-fg{fill:none;stroke:var(--green);stroke-width:11;stroke-linecap:round;transition:stroke .6s ease}
@@ -144,7 +153,7 @@
   .custom input::-webkit-outer-spin-button,.custom input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
   .custom input:focus{outline:none;border-color:var(--gold)}
   .chip.set-btn{min-width:96px;display:inline-flex;align-items:center;justify-content:center}
-  .controls{display:flex;gap:10px;justify-content:center;align-items:center;margin-top:16px;flex-wrap:wrap}
+  .controls{display:flex;gap:10px;justify-content:center;align-items:center;margin-top:24px;flex-wrap:wrap}
   .btn{
     display:inline-flex;align-items:center;gap:9px;border-radius:999px;min-height:50px;
     padding:12px 24px;font-size:16px;font-weight:600;border:1px solid rgba(92,36,56,.16);
@@ -191,7 +200,7 @@
     background:rgba(255,255,255,.65);border:1px solid rgba(92,36,56,.18);border-bottom-width:2px;
     border-radius:6px;padding:2px 7px;
   }
-  .foot-meta{margin-top:7px;font-size:12px}
+  .foot-meta{margin-top:7px;font-size:12px;align-self:stretch;text-align:right;padding-right:2px}
   footer a{color:var(--wine);font-weight:600;text-decoration:none}
   footer a:hover{text-decoration:underline}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
@@ -204,7 +213,7 @@
     .section.divided{padding-top:10px}
     .section-label{margin-bottom:6px}
     .custom{margin-top:12px}
-    .controls{margin-top:8px}
+    .controls{margin-top:16px}
     .options label{padding:6px 13px 6px 8px}
     footer{margin-top:8px}
     .foot-meta{margin-top:5px}
@@ -216,12 +225,12 @@
     .section.divided{padding-top:8px}
     .section-label{margin-bottom:4px}
     .custom{margin-top:10px}
-    .controls{margin-top:6px}
+    .controls{margin-top:12px}
     .chip{min-height:40px;padding:7px 13px}
     .btn.primary{min-height:50px}
     .btn.utility{min-height:44px}
     .feedback{margin-top:8px;height:19px;font-size:13.5px}
-    .ring-wrap{width:min(86vw, clamp(180px, calc(100dvh - 505px), 440px))}
+    .ring-wrap{width:min(86vw, clamp(180px, calc(100dvh - 513px), 440px))}
     footer{margin-top:6px}
     .foot-meta{margin-top:4px}
   }
@@ -245,8 +254,7 @@
     <button class="btn icon-btn" id="fullBtn" title="Fullscreen" aria-label="Fullscreen">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
     </button>
-    <div class="pre-ring">
-      <span class="stage-pill"><span class="dot"></span><span id="stageLabel">Ready</span></span>
+    <div class="info-wrap">
       <button class="info-btn" id="infoBtn" aria-label="How to use ClassTimer+" aria-expanded="false" aria-controls="infoPanel">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.4"/><circle cx="12" cy="7.6" r="0.6" fill="currentColor" stroke="none"/></svg>
       </button>
@@ -260,6 +268,9 @@
         </ol>
         <p class="info-keys">Shortcuts: <strong>Space</strong> start / pause · <strong>−</strong> / <strong>+</strong> one minute · <strong>R</strong> reset · <strong>F</strong> fullscreen</p>
       </div>
+    </div>
+    <div class="pre-ring">
+      <span class="stage-pill"><span class="dot"></span><span id="stageLabel">Ready</span></span>
     </div>
     <div class="ring-wrap">
       <svg class="ring" viewBox="0 0 200 200" aria-hidden="true">
@@ -334,7 +345,7 @@
       <span><kbd>F</kbd> Fullscreen</span>
     </div>
   </div>
-  <div class="foot-meta">Created by <a href="https://rayjoshuaa-portfolio.pages.dev" target="_blank" rel="noopener">Ray Joshua</a></div>
+  <div class="foot-meta">© 2026 <a href="https://rayjoshuaa-portfolio.pages.dev" target="_blank" rel="noopener">Ray Joshua</a>. All rights reserved.</div>
 </footer>
 
 <script>
