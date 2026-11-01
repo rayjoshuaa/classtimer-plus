@@ -2,6 +2,15 @@
 
 All notable changes to ClassTimer+ are recorded here. Versions follow the releases of the single-file app.
 
+## [1.8.0] — 2026-11-01
+
+Owner review round 6 (Project Owner feedback on the live app, with screenshots):
+
+- **Info moved to the corner:** the ⓘ button now sits in the card's top-left corner, mirroring the fullscreen icon at top-right (same 42 px glass style); the "How to use" panel drops down from it. The stage pill now sits alone, centred above the ring.
+- **More air before the actions:** the gap between the Adjust section and the Start/Reset row was increased at every size (the ring's height budget absorbed the difference, so nothing else shrank or clipped).
+- **Formal copyright line:** the footer credit is now "© 2026 Ray Joshua. All rights reserved." (name still linked to his portfolio), set at the bottom-right of the page under the settings/shortcuts row.
+- **Animated stage vignette:** a soft vignette now glows at the page edges in the current stage colour — green while on track, amber as time runs down, red at the end — breathing gently on a 5-second cycle. Together with the drifting background glows and the stage tint, the whole page now signals the stage before you even read the ring. Off under `prefers-reduced-motion`.
+
 ## [1.7.0] — 2026-11-01
 
 Owner review round 5 (Project Owner feedback on the live app, with screenshots):
