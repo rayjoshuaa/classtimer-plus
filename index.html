@@ -121,7 +121,7 @@
   body.stage-red .stage-pill{color:#b23a32} body.stage-red .stage-pill .dot{background:var(--red)}
   #timeDisplay{
     font-family:"Outfit",sans-serif;font-size:clamp(58px,11vw,124px);font-size:30cqw;font-weight:700;
-    line-height:1.05;font-variant-numeric:tabular-nums;letter-spacing:-1px;color:var(--ink);
+    line-height:1.05;font-variant-numeric:tabular-nums;letter-spacing:2px;color:var(--ink);
   }
   #timeDisplay.overtime{color:#b23a32;font-size:25cqw}
   .feedback{font-size:14px;color:var(--muted);text-align:center;margin-top:10px;height:21px}
@@ -191,7 +191,7 @@
   }
   .options input:checked{background:var(--wine)}
   .options input:checked::after{transform:translateX(16px)}
-  footer{margin-top:12px;text-align:center;color:var(--muted);display:flex;flex-direction:column;align-items:center}
+  footer{margin-top:12px;text-align:center;color:var(--muted);display:flex;flex-direction:column;align-items:center;width:100%}
   .foot-row{display:flex;gap:8px 22px;justify-content:center;align-items:center;flex-wrap:wrap}
   .keys{display:flex;gap:8px 18px;justify-content:center;flex-wrap:wrap;font-size:12px}
   .keys span{display:inline-flex;align-items:center;gap:6px}
@@ -393,11 +393,17 @@
     document.body.classList.toggle('finished', finished);
     var frac = total > 0 ? Math.max(0, remaining/total) : 0;
     ring.style.strokeDashoffset = CIRC * (1 - frac);
-    if(finished){
+    var overtimeOn = document.getElementById('overtimeToggle').checked;
+    if(finished && overtimeOn){
       display.textContent = '+' + fmt(-remaining);
       display.classList.add('overtime');
       stageLabel.textContent = "Time's up";
-      subLabel.textContent = 'Overtime — wrap up and share';
+      subLabel.textContent = 'Overtime — wrap up and finish up';
+    } else if(finished){
+      display.textContent = '00:00';
+      display.classList.remove('overtime');
+      stageLabel.textContent = "Time's up";
+      subLabel.textContent = '';
     } else {
       display.textContent = fmt(remaining);
       display.classList.remove('overtime');
@@ -408,7 +414,7 @@
     var lbl = stageLabel.textContent;
     if(lbl !== lastLabel){ lastLabel = lbl; srStatus.textContent = lbl + (finished ? '' : ', ' + display.textContent); }
     var timerActive = running || finished || remaining < total;
-    document.title = timerActive ? 'ClassTimer+ | ' + (finished ? '+' : '') + display.textContent : 'Teacher Tools: ClassTimer+';
+    document.title = timerActive ? 'ClassTimer+ | ' + display.textContent : 'Teacher Tools: ClassTimer+';
   }
   function warmAudio(){
     try{
@@ -449,8 +455,7 @@
   function start(){
     if(running) return;
     warmAudio();
-    if(remaining <= 0 && !finished){ remaining = total; finished = false; }
-    if(finished){ finished = false; }
+    if(finished || remaining <= 0){ finished = false; remaining = total; }
     running = true;
     endAt = Date.now() + remaining * 1000;
     tickId = setInterval(tick, 100);
@@ -500,7 +505,11 @@
     var m = parseInt(document.getElementById('customMin').value||'0',10);
     var s = parseInt(document.getElementById('customSec').value||'0',10);
     var tot = m*60 + s;
-    if(tot > 0){ setTotal(tot); }
+    if(tot > 0){
+      setTotal(tot);
+      document.getElementById('customMin').value = '';
+      document.getElementById('customSec').value = '';
+    }
     else{
       subLabel.textContent = 'Enter minutes or seconds first, then press Set';
       srStatus.textContent = 'Please enter a time first';
