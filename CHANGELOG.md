@@ -2,6 +2,10 @@
 
 All notable changes to ClassTimer+ are recorded here. Versions follow the releases of the single-file app.
 
+## [Unreleased]
+
+- Documentation refresh and project notes tidy-up.
+
 ## [1.9.1] — 2026-11-01
 
 Owner review round 7 follow-up (Project Owner screenshot of a running timer in a narrow window):
