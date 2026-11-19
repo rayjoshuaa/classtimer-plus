@@ -22,6 +22,8 @@ No account, no ads, and nothing to install — it is a single web page, and it w
 2. Choose a preset, or type a custom time, then press **Start**.
 3. Use **+1:00** / **−1:00** whenever the class needs a minute more or a minute less.
 
+**Tip for teachers:** if you want the timer to stop dead at zero, turn off "Count overtime after zero" in the settings. With overtime on, the timer keeps counting up after zero so wrap-up time stays visible.
+
 ## Keyboard shortcuts
 
 | Key | Action |
