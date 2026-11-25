@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.1.3 — congestion and overlap fixes (desktop + mobile)
+
+- Timer digits now size from the smaller of screen width and height,
+  so 10:00 no longer overflows the card on portrait phones.
+- The space between sections is now flexible spacer gaps that absorb
+  extra or tight space, so sections can never crush into or overlap
+  each other or the keyboard-hints footer again.
+- Tighter gaps throughout, and the two description lines hide on
+  short screens to give the timer room.
+- Still fills the viewport height, still no scrolling, no behaviour
+  changes.
+
 ## v2.1.2 — fills the viewport height
 
 - The card now stretches to the full viewport height and the sections
