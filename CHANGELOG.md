@@ -1,5 +1,16 @@
 # Changelog
 
+## v2.1.0 — black & white app icon
+
+- New black & white app icon set for all 10 Teacher Tools apps (see
+  `../icons-bw/`): solid black sharp-square tile, white Lucide symbol,
+  no colour. ClassTimer+ uses the `timer` icon.
+- ClassTimer+ ships its icon as `public/icon.svg`, now the site's favicon
+  (`<link rel="icon">` in `index.html`) and the brand mark shown above the
+  "ClassTimer+" title in the app header.
+- No behaviour changes: all timer logic, storage, shortcuts and settings are
+  identical to v2.0.0.
+
 ## v2.0.0 — shadcn/ui rebuild
 
 - Rebuilt ClassTimer+ from the v1.9.1 single-file vanilla app into a
