@@ -308,18 +308,18 @@ export default function App() {
 
   return (
     <TooltipProvider>
-      <div className="flex h-svh flex-col items-center overflow-hidden bg-background px-4 py-4 text-foreground">
+      <div className="flex h-svh flex-col items-center overflow-hidden bg-background px-4 py-3 text-foreground">
         <header className="flex w-full max-w-4xl shrink-0 flex-col items-center gap-1 text-center">
           <Badge variant="secondary">Teacher Tools</Badge>
-          <h1 className="text-3xl font-bold tracking-tight">ClassTimer+</h1>
-          <p className="max-w-xl text-sm text-muted-foreground [@media(max-height:720px)]:hidden">
+          <h1 className="text-2xl font-bold tracking-tight">ClassTimer+</h1>
+          <p className="max-w-xl text-xs text-muted-foreground [@media(max-height:720px)]:hidden">
             The calm countdown timer for your classroom screen — time the whole
             class can see, without the alarm-clock stress.
           </p>
         </header>
 
-        <main className="flex w-full min-h-0 flex-1 justify-center pt-4">
-          <Card className="flex h-full w-full max-w-4xl flex-col gap-3 py-4">
+        <main className="flex w-full min-h-0 flex-1 justify-center pt-3">
+          <Card className="flex h-full w-full max-w-4xl flex-col gap-2 py-3">
             <CardHeader>
               <div className="flex items-start justify-between gap-4">
                 <div className="flex flex-col gap-1.5">
@@ -392,15 +392,19 @@ export default function App() {
               </div>
             </CardHeader>
 
-            <CardContent className="flex min-h-0 flex-1 flex-col items-center gap-2 overflow-hidden">
-              <Badge variant={badgeVariant}>{stageLabel}</Badge>
+            <CardContent className="flex min-h-0 flex-1 flex-col items-center gap-1 overflow-hidden">
+              <Badge variant={badgeVariant} className="shrink-0">
+                {stageLabel}
+              </Badge>
 
-              <div className="max-w-full text-[clamp(3.25rem,16vmin,10.5rem)] leading-none font-bold tabular-nums tracking-tight">
-                {display}
+              <div className="flex h-[clamp(3.5rem,15vmin,9.5rem)] shrink-0 items-center justify-center">
+                <span className="max-w-full text-[clamp(3rem,14vmin,9rem)] leading-none font-bold tabular-nums tracking-tight">
+                  {display}
+                </span>
               </div>
 
-              <p className="flex h-5 items-center text-sm text-muted-foreground">
-                {shownFeedback}
+              <p className="flex h-5 w-full shrink-0 items-center justify-center text-center text-sm whitespace-nowrap text-muted-foreground">
+                {shownFeedback || "\u00A0"}
               </p>
               <div className="sr-only" aria-live="polite">
                 {stageLabel}, {display}
@@ -425,7 +429,7 @@ export default function App() {
                   aria-label="Preset times"
                 >
                   {PRESETS.map((min) => (
-                    <ToggleGroupItem key={min} value={String(min)} className="px-4 py-2">
+                    <ToggleGroupItem key={min} value={String(min)} className="px-4 py-1.5">
                       {min} min
                     </ToggleGroupItem>
                   ))}
@@ -474,21 +478,21 @@ export default function App() {
               <div className="flex shrink-0 flex-col items-center gap-3">
                 <Label>Adjust</Label>
                 <ButtonGroup>
-                  <Button variant="outline" onClick={minusMinute} title="Take away one minute">
+                  <Button variant="outline" className="w-24" onClick={minusMinute} title="Take away one minute">
                     <Minus /> 1 min
                   </Button>
-                  <Button variant="outline" onClick={addMinute} title="Add one minute">
+                  <Button variant="outline" className="w-24" onClick={addMinute} title="Add one minute">
                     <Plus /> 1 min
                   </Button>
                 </ButtonGroup>
               </div>
 
               <div className="flex shrink-0 flex-wrap items-center justify-center gap-3">
-                <Button size="lg" onClick={toggleStartPause}>
+                <Button size="lg" className="w-36" onClick={toggleStartPause}>
                   {running ? <Pause /> : <Play />}
                   {startLabel}
                 </Button>
-                <Button size="lg" variant="outline" onClick={() => setTotal(total)}>
+                <Button size="lg" variant="outline" className="w-32" onClick={() => setTotal(total)}>
                   <RotateCcw /> Reset
                 </Button>
               </div>
