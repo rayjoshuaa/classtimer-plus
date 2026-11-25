@@ -308,18 +308,18 @@ export default function App() {
 
   return (
     <TooltipProvider>
-      <div className="app-scale flex h-svh flex-col items-center overflow-hidden bg-background px-4 py-3 text-foreground">
-        <header className="flex w-full max-w-3xl flex-col items-center gap-1 text-center">
+      <div className="flex h-svh flex-col items-center overflow-hidden bg-background px-4 py-4 text-foreground">
+        <header className="flex w-full max-w-4xl shrink-0 flex-col items-center gap-1 text-center">
           <Badge variant="secondary">Teacher Tools</Badge>
-          <h1 className="text-2xl font-bold tracking-tight">ClassTimer+</h1>
-          <p className="max-w-xl text-xs text-muted-foreground">
+          <h1 className="text-3xl font-bold tracking-tight">ClassTimer+</h1>
+          <p className="max-w-xl text-sm text-muted-foreground">
             The calm countdown timer for your classroom screen — time the whole
             class can see, without the alarm-clock stress.
           </p>
         </header>
 
-        <main className="flex w-full min-h-0 flex-1 items-start justify-center pt-3">
-          <Card className="w-full max-w-3xl gap-3 py-3">
+        <main className="flex w-full min-h-0 flex-1 justify-center pt-4">
+          <Card className="flex h-full w-full max-w-4xl flex-col gap-3 py-4">
             <CardHeader>
               <div className="flex items-start justify-between gap-4">
                 <div className="flex flex-col gap-1.5">
@@ -392,10 +392,10 @@ export default function App() {
               </div>
             </CardHeader>
 
-            <CardContent className="flex flex-col items-center gap-3">
+            <CardContent className="flex min-h-0 flex-1 flex-col items-center justify-between gap-3">
               <Badge variant={badgeVariant}>{stageLabel}</Badge>
 
-              <div className="text-6xl font-bold tabular-nums tracking-tight md:text-7xl">
+              <div className="text-[clamp(4.5rem,19vh,12rem)] leading-none font-bold tabular-nums tracking-tight">
                 {display}
               </div>
 
@@ -406,7 +406,7 @@ export default function App() {
                 {stageLabel}, {display}
               </div>
 
-              <Progress value={progressValue} className="w-full" aria-label="Time remaining" />
+              <Progress value={progressValue} className="h-3 w-full" aria-label="Time remaining" />
 
               <Separator />
 
@@ -415,6 +415,7 @@ export default function App() {
                 <ToggleGroup
                   type="single"
                   variant="outline"
+                  className="flex-wrap justify-center"
                   value={presetValue}
                   onValueChange={(value) => {
                     if (value) setTotal(parseInt(value, 10) * 60)
@@ -422,7 +423,7 @@ export default function App() {
                   aria-label="Preset times"
                 >
                   {PRESETS.map((min) => (
-                    <ToggleGroupItem key={min} value={String(min)}>
+                    <ToggleGroupItem key={min} value={String(min)} className="px-4 py-2">
                       {min} min
                     </ToggleGroupItem>
                   ))}
@@ -521,7 +522,7 @@ export default function App() {
           </Card>
         </main>
 
-        <footer className="pt-3 text-center text-xs text-muted-foreground">
+        <footer className="shrink-0 pt-3 text-center text-xs text-muted-foreground">
           © 2026{" "}
           <Button variant="link" size="sm" className="h-auto p-0 text-xs" asChild>
             <a href="https://rayjoshuaa-portfolio.pages.dev" target="_blank" rel="noopener noreferrer">
