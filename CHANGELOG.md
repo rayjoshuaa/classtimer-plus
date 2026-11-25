@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.1.4 — no more shifting, overflow trimmed
+
+- Fixed the layout moving between Play and Pause: the Start/Pause and
+  Reset buttons now have fixed widths (the label change no longer
+  pushes Reset sideways), the status line always reserves its space
+  even when empty, and the digits sit in a fixed-height box.
+- Trimmed the small overflow that clipped the Pause/Reset row:
+  slightly smaller digit cap, tighter card and header spacing.
+- No behaviour changes.
+
 ## v2.1.3 — congestion and overlap fixes (desktop + mobile)
 
 - Timer digits now size from the smaller of screen width and height,
