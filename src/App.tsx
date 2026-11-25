@@ -310,6 +310,7 @@ export default function App() {
     <TooltipProvider>
       <div className="flex min-h-svh flex-col items-center bg-background px-4 py-6 text-foreground">
         <header className="flex w-full max-w-3xl flex-col items-center gap-2 text-center">
+          <img src="/icon.svg" alt="ClassTimer+ icon" className="size-16" />
           <Badge variant="secondary">Teacher Tools</Badge>
           <h1 className="text-3xl font-bold tracking-tight">ClassTimer+</h1>
           <p className="max-w-xl text-sm text-muted-foreground">
