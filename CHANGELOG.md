@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.1.1 — icon removed from page, one fixed screen
+
+- Removed the app icon brand mark from the page header (the favicon in
+  the browser tab stays).
+- The app now fits exactly one screen and never scrolls: fixed
+  viewport-height layout, tighter spacing, and the whole layout scales
+  down slightly on short screens.
+- No behaviour changes: timer logic, storage, shortcuts and settings
+  are identical to v2.1.0.
+
 ## v2.1.0 — black & white app icon
 
 - New black & white app icon set for all 10 Teacher Tools apps (see
