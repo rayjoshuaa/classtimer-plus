@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.1.5 — Custom label, bold section titles, digit colours
+
+- The Custom minutes and Custom seconds fields now share one
+  "Custom" label (inputs keep their min/sec placeholders).
+- Section labels (Time, Custom, Adjust) are bold like titles.
+- The Set button is bigger.
+- The timer digits change colour: orange once half the time is gone,
+  red in the last 10 seconds and when time is up.
+- No other behaviour changes.
+
 ## v2.1.4 — no more shifting, overflow trimmed
 
 - Fixed the layout moving between Play and Pause: the Start/Pause and
