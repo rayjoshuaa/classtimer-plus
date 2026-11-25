@@ -123,8 +123,23 @@
     }
   body {
     @apply bg-background text-foreground;
+    overflow: hidden;
+    overscroll-behavior: none;
     }
   html {
     @apply font-sans;
     }
+}
+
+/* ClassTimer+ is a fixed one-screen app: on short viewports the whole
+   layout scales down slightly so nothing ever needs to scroll. */
+@media (max-height: 860px) {
+  .app-scale {
+    zoom: 0.9;
+  }
+}
+@media (max-height: 740px) {
+  .app-scale {
+    zoom: 0.8;
+  }
 }

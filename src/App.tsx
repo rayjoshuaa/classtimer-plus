@@ -308,19 +308,18 @@ export default function App() {
 
   return (
     <TooltipProvider>
-      <div className="flex min-h-svh flex-col items-center bg-background px-4 py-6 text-foreground">
-        <header className="flex w-full max-w-3xl flex-col items-center gap-2 text-center">
-          <img src="/icon.svg" alt="ClassTimer+ icon" className="size-16" />
+      <div className="app-scale flex h-svh flex-col items-center overflow-hidden bg-background px-4 py-3 text-foreground">
+        <header className="flex w-full max-w-3xl flex-col items-center gap-1 text-center">
           <Badge variant="secondary">Teacher Tools</Badge>
-          <h1 className="text-3xl font-bold tracking-tight">ClassTimer+</h1>
-          <p className="max-w-xl text-sm text-muted-foreground">
+          <h1 className="text-2xl font-bold tracking-tight">ClassTimer+</h1>
+          <p className="max-w-xl text-xs text-muted-foreground">
             The calm countdown timer for your classroom screen — time the whole
             class can see, without the alarm-clock stress.
           </p>
         </header>
 
-        <main className="flex w-full flex-1 items-start justify-center pt-6">
-          <Card className="w-full max-w-3xl">
+        <main className="flex w-full min-h-0 flex-1 items-start justify-center pt-3">
+          <Card className="w-full max-w-3xl gap-3 py-3">
             <CardHeader>
               <div className="flex items-start justify-between gap-4">
                 <div className="flex flex-col gap-1.5">
@@ -393,10 +392,10 @@ export default function App() {
               </div>
             </CardHeader>
 
-            <CardContent className="flex flex-col items-center gap-6">
+            <CardContent className="flex flex-col items-center gap-3">
               <Badge variant={badgeVariant}>{stageLabel}</Badge>
 
-              <div className="text-7xl font-bold tabular-nums tracking-tight md:text-8xl">
+              <div className="text-6xl font-bold tabular-nums tracking-tight md:text-7xl">
                 {display}
               </div>
 
@@ -522,7 +521,7 @@ export default function App() {
           </Card>
         </main>
 
-        <footer className="pt-6 text-center text-xs text-muted-foreground">
+        <footer className="pt-3 text-center text-xs text-muted-foreground">
           © 2026{" "}
           <Button variant="link" size="sm" className="h-auto p-0 text-xs" asChild>
             <a href="https://rayjoshuaa-portfolio.pages.dev" target="_blank" rel="noopener noreferrer">
