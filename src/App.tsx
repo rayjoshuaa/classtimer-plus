@@ -312,7 +312,7 @@ export default function App() {
         <header className="flex w-full max-w-4xl shrink-0 flex-col items-center gap-1 text-center">
           <Badge variant="secondary">Teacher Tools</Badge>
           <h1 className="text-3xl font-bold tracking-tight">ClassTimer+</h1>
-          <p className="max-w-xl text-sm text-muted-foreground">
+          <p className="max-w-xl text-sm text-muted-foreground [@media(max-height:720px)]:hidden">
             The calm countdown timer for your classroom screen — time the whole
             class can see, without the alarm-clock stress.
           </p>
@@ -324,7 +324,7 @@ export default function App() {
               <div className="flex items-start justify-between gap-4">
                 <div className="flex flex-col gap-1.5">
                   <CardTitle>Countdown</CardTitle>
-                  <CardDescription>
+                  <CardDescription className="[@media(max-height:720px)]:hidden">
                     Pick a preset or set a custom time, then press Start.
                   </CardDescription>
                 </div>
@@ -392,10 +392,10 @@ export default function App() {
               </div>
             </CardHeader>
 
-            <CardContent className="flex min-h-0 flex-1 flex-col items-center justify-between gap-3">
+            <CardContent className="flex min-h-0 flex-1 flex-col items-center gap-2 overflow-hidden">
               <Badge variant={badgeVariant}>{stageLabel}</Badge>
 
-              <div className="text-[clamp(4.5rem,19vh,12rem)] leading-none font-bold tabular-nums tracking-tight">
+              <div className="max-w-full text-[clamp(3.25rem,16vmin,10.5rem)] leading-none font-bold tabular-nums tracking-tight">
                 {display}
               </div>
 
@@ -408,9 +408,11 @@ export default function App() {
 
               <Progress value={progressValue} className="h-3 w-full" aria-label="Time remaining" />
 
+              <div className="min-h-0 flex-1" />
+
               <Separator />
 
-              <div className="flex w-full flex-col items-center gap-3">
+              <div className="flex w-full shrink-0 flex-col items-center gap-3">
                 <Label>Time</Label>
                 <ToggleGroup
                   type="single"
@@ -465,9 +467,11 @@ export default function App() {
                 </div>
               </div>
 
+              <div className="min-h-0 flex-1" />
+
               <Separator />
 
-              <div className="flex flex-col items-center gap-3">
+              <div className="flex shrink-0 flex-col items-center gap-3">
                 <Label>Adjust</Label>
                 <ButtonGroup>
                   <Button variant="outline" onClick={minusMinute} title="Take away one minute">
@@ -479,7 +483,7 @@ export default function App() {
                 </ButtonGroup>
               </div>
 
-              <div className="flex flex-wrap items-center justify-center gap-3">
+              <div className="flex shrink-0 flex-wrap items-center justify-center gap-3">
                 <Button size="lg" onClick={toggleStartPause}>
                   {running ? <Pause /> : <Play />}
                   {startLabel}
@@ -489,9 +493,11 @@ export default function App() {
                 </Button>
               </div>
 
+              <div className="min-h-0 flex-1" />
+
               <Separator />
 
-              <div className="flex flex-wrap items-center justify-center gap-6">
+              <div className="flex shrink-0 flex-wrap items-center justify-center gap-6">
                 <div className="flex items-center gap-2">
                   <Switch id="sound" checked={soundOn} onCheckedChange={setSoundOn} />
                   <Label htmlFor="sound">Gentle chime at zero</Label>
