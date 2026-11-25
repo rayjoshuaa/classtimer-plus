@@ -296,6 +296,15 @@ export default function App() {
           : "default"
   const progressValue = finished ? 0 : Math.max(0, Math.min(100, frac * 100))
   const timerActive = running || finished || remaining < total
+  // Digit colour stages (Ray, 2026-11-25): orange once half the time is
+  // gone, red in the last 10 seconds and when time is up.
+  const digitColor = !timerActive
+    ? ""
+    : finished || remaining <= 10
+      ? "text-red-600"
+      : remaining <= total / 2
+        ? "text-orange-500"
+        : ""
 
   useEffect(() => {
     document.title = timerActive
@@ -398,7 +407,9 @@ export default function App() {
               </Badge>
 
               <div className="flex h-[clamp(3.5rem,15vmin,9.5rem)] shrink-0 items-center justify-center">
-                <span className="max-w-full text-[clamp(3rem,14vmin,9rem)] leading-none font-bold tabular-nums tracking-tight">
+                <span
+                  className={`max-w-full text-[clamp(3rem,14vmin,9rem)] leading-none font-bold tabular-nums tracking-tight transition-colors duration-500 ${digitColor}`}
+                >
                   {display}
                 </span>
               </div>
@@ -417,7 +428,7 @@ export default function App() {
               <Separator />
 
               <div className="flex w-full shrink-0 flex-col items-center gap-3">
-                <Label>Time</Label>
+                <Label className="text-base font-semibold text-foreground">Time</Label>
                 <ToggleGroup
                   type="single"
                   variant="outline"
@@ -435,9 +446,9 @@ export default function App() {
                   ))}
                 </ToggleGroup>
 
-                <div className="flex flex-wrap items-end justify-center gap-3">
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="custom-min">Custom minutes</Label>
+                <div className="flex flex-col items-center gap-2">
+                  <Label className="text-base font-semibold text-foreground">Custom</Label>
+                  <div className="flex flex-wrap items-center justify-center gap-3">
                     <Input
                       id="custom-min"
                       ref={minInputRef}
@@ -445,29 +456,28 @@ export default function App() {
                       min={0}
                       max={999}
                       placeholder="min"
+                      aria-label="Custom minutes"
                       inputMode="numeric"
                       value={customMin}
                       onChange={(e) => setCustomMin(e.target.value)}
-                      className="w-24 text-center"
+                      className="h-11 w-24 text-center"
                     />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="custom-sec">Custom seconds</Label>
                     <Input
                       id="custom-sec"
                       type="number"
                       min={0}
                       max={59}
                       placeholder="sec"
+                      aria-label="Custom seconds"
                       inputMode="numeric"
                       value={customSec}
                       onChange={(e) => setCustomSec(e.target.value)}
-                      className="w-24 text-center"
+                      className="h-11 w-24 text-center"
                     />
+                    <Button size="lg" variant="secondary" className="w-24" onClick={applyCustom}>
+                      Set
+                    </Button>
                   </div>
-                  <Button variant="secondary" onClick={applyCustom}>
-                    Set
-                  </Button>
                 </div>
               </div>
 
@@ -476,7 +486,7 @@ export default function App() {
               <Separator />
 
               <div className="flex shrink-0 flex-col items-center gap-3">
-                <Label>Adjust</Label>
+                <Label className="text-base font-semibold text-foreground">Adjust</Label>
                 <ButtonGroup>
                   <Button variant="outline" className="w-24" onClick={minusMinute} title="Take away one minute">
                     <Minus /> 1 min
