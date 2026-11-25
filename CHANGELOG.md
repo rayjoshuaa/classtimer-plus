@@ -1,5 +1,16 @@
 # Changelog
 
+## v2.1.2 — fills the viewport height
+
+- The card now stretches to the full viewport height and the sections
+  spread evenly across it, so the app fills the screen instead of
+  sitting small at the top.
+- Timer digits scale with the screen height (up to 12rem), the card is
+  wider, the progress bar is thicker, and preset buttons are larger.
+- Fixed the footer overlapping the switches row.
+- Removed the short-screen zoom-down from v2.1.1. Still one fixed
+  screen, still no scrolling, no behaviour changes.
+
 ## v2.1.1 — icon removed from page, one fixed screen
 
 - Removed the app icon brand mark from the page header (the favicon in

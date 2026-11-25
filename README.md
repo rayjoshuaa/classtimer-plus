@@ -1,11 +1,11 @@
-# ClassTimer+ — v2.1.1 (shadcn/ui rebuild)
+# ClassTimer+ — v2.1.2 (shadcn/ui rebuild)
 
 A free, big-screen classroom countdown timer. No sign-up; the chosen time is
 stored in the browser (`localStorage` key `classtimer_total`) and the app
 builds to a fully static site.
 
 This is the **shadcn/ui rebuild** of ClassTimer+ (v2.0.0, icon update in
-v2.1.1). The previous vanilla build (v1.9.1) still lives in
+v2.1.2). The previous vanilla build (v1.9.1) still lives in
 `../classtimer-plus/` and is not touched by this project.
 
 **Icon:** the black & white Teacher Tools icon set lives in `../icons-bw/`.
@@ -106,4 +106,4 @@ npm run preview  # preview the production build
 
 ## Version
 
-v2.1.1 — see `CHANGELOG.md`.
+v2.1.2 — see `CHANGELOG.md`.
